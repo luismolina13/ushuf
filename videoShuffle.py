@@ -1,4 +1,8 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
 import os
+import urllib2
 import urllib
 import jinja2
 import webapp2
@@ -22,8 +26,22 @@ class MainPage(webapp2.RequestHandler):
         self.response.write("Thanks for liking!")        
         #print "Hello"
 
+class LikeVideo(webapp2.RequestHandler):
+    def post(self):        
+        videoID = self.request.get('videoID')
+        #self.request.body = 'videoID=vid'        
+        #print videoID;
+        self.response.write("Thanks for liking! "+videoID)        
+
+class unLikeVideo(webapp2.RequestHandler):
+    def post(self):
+        #self.body = 'videoID=vid'
+        #videoID = self.POST['videoID']
+        self.response.write("We will find you a better pick!")# + videoID)       
     	
 
 application = webapp2.WSGIApplication([
-	('/', MainPage),	
+	('/', MainPage),
+    ('/like', LikeVideo),
+    ('/unlike', unLikeVideo),
 ], debug=True)
