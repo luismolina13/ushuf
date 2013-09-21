@@ -11,7 +11,6 @@ class MainPage(webapp2.RequestHandler):
 
     def get(self):        
     	greeting = 'Welcome to uShuf: revolutionizing the way you watch TV'
-
         template_values = {
             'greeting': greeting,           
         }
@@ -20,6 +19,9 @@ class MainPage(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
     def post(self):
+        self.response.write("Thanks for liking!")        
+        #print "Hello"
+
     	
 
 application = webapp2.WSGIApplication([
