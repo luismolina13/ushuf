@@ -1,6 +1,5 @@
-// Once the api loads call enable the search box.
-function handleAPILoaded() {
-  $('#search-button').attr('disabled', false);
+function startSearch() {
+  loadXMLDoc("POST", "/search", true, showMssg, "search="+document.getElementById("channel").value);
 }
 
 // Search for a given string.

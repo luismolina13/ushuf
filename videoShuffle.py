@@ -6,6 +6,7 @@ import urllib2
 import urllib
 import jinja2
 import webapp2
+import youtubeSearch
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -28,20 +29,27 @@ class MainPage(webapp2.RequestHandler):
 
 class LikeVideo(webapp2.RequestHandler):
     def post(self):        
-        videoID = self.request.get('videoID')
-        #self.request.body = 'videoID=vid'        
-        #print videoID;
-        self.response.write("Thanks for liking! "+videoID)        
+        videoID = self.request.get('videoID')        
+        self.response.write("Thanks for liking! " + videoID)        
 
 class unLikeVideo(webapp2.RequestHandler):
-    def post(self):
-        #self.body = 'videoID=vid'
-        #videoID = self.POST['videoID']
-        self.response.write("We will find you a better pick!")# + videoID)       
+    def post(self):        
+        videoID = self.request.get('videoID')
+        self.response.write("We will find you a better pick!" + videoID)       
     	
+class Search(webapp2.RequestHandler):
+    def post(self):
+        searchTerm = self.request.get('search')
+        option.q = "funny+videos"
+        options.maxResults = 5
+        youtube_search(options)
+
+
+
 
 application = webapp2.WSGIApplication([
 	('/', MainPage),
     ('/like', LikeVideo),
     ('/unlike', unLikeVideo),
+    ('/search', Search),
 ], debug=True)

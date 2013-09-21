@@ -17,12 +17,24 @@ function loadVideo() {
 
 // EVENT TRIGGERS
 function onPlayerStateChange(playerState) {
-  if(playerState == 0) {
-    alert("VideoEnded");
-  }
-  if(playerState == 5) {
-    alert("VideoReadytoPlay");
-  }
+  switch(playerState) {
+    case 0:
+      alert("VideoEnded");
+      break;
+    case 1:
+      // Find the next video to play and cue it?
+      
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      alert("VideoReadytoPlay");
+      break;
+  }    
 }
 
 // This function is called when an error is thrown by the player
