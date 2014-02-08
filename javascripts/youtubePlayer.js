@@ -1,38 +1,36 @@
-var currentVideo = "rcatzGEG3ro";
+var currentVideo = "vdRr97u41Rg";
+var nextVideo = "";
 
 // Update a particular HTML element with a new value
 function updateHTML(elmId, value) {
   document.getElementById(elmId).innerHTML = value;
 }
 
-// Loads the selected video into the player.
-function loadVideo() {
-  var selectBox = document.getElementById("videoSelection");
-  var videoID = selectBox.options[selectBox.selectedIndex].value
-  
-  if(ytplayer) {
-    ytplayer.loadVideoById(videoID);
+// Play video and set a timer to determine if they liked 
+// this video or not. 
+function playVideo() {
+  if(ytplayer) {    
+    ytplayer.playVideo();
+    halfVideoDuration = (ytplayer.getDuration() * 1000) / 2;
+    alert(halfVideoDuration);
+    setTimeout(function() {alert("TIMEOUT"); videoLiked();},halfVideoDuration);
   }
 }
 
 // EVENT TRIGGERS
 function onPlayerStateChange(playerState) {
   switch(playerState) {
-    case 0:
-      alert("VideoEnded");
+    case 0: // ENDED    
+      ytplayer.loadVideoById(nextVideo);      
+      playVideo();    
       break;
-    case 1:
-      // Find the next video to play and cue it?
-      
+    case 1: // PLAYING      
       break;
-    case 2:
+    case 2: // PAUSED
       break;
-    case 3:
-      break;
-    case 4:
-      break;
-    case 5:
-      alert("VideoReadytoPlay");
+    case 3: // BUFFERING
+      break;    
+    case 5: // CUED       
       break;
   }    
 }
@@ -45,7 +43,7 @@ function onPlayerError(errorCode) {
 // This function is automatically called by the player once it loads
 function onYouTubePlayerReady(playerId) {
   ytplayer = document.getElementById("ytPlayer");
-  ytplayer.playVideo();
+  playVideo();
   ytplayer.addEventListener("onError", "onPlayerError");
   ytPlayer.addEventListener("onStateChange", "onPlayerStateChange");  
 }

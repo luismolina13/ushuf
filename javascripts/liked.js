@@ -1,11 +1,13 @@
-function showMssg(txt) {
-	alert(txt);
+function queueVideo(videoID) {	
+	nextVideo = videoID;	
+	currentVideo = nextVideo;
 }
 
 function videoLiked() {	
-	loadXMLDoc("POST", "/like", true, showMssg, "videoID="+currentVideo);
+	alert("videoLiked");
+	loadXMLDoc("POST", "/like", true, queueVideo, "videoID="+currentVideo);
 }
 
-function videoUnLiked() {
+function videoUnLiked() {	
 	loadXMLDoc("POST", "/unlike", true, showMssg, "videoID="+currentVideo);
 }
