@@ -12,8 +12,8 @@ function playVideo() {
   if(ytplayer) {    
     ytplayer.playVideo();
     halfVideoDuration = (ytplayer.getDuration() * 1000) / 2;
-    alert(halfVideoDuration);
-    setTimeout(function() {alert("TIMEOUT"); videoLiked();},halfVideoDuration);
+    // alert(halfVideoDuration);
+    setTimeout(function() {videoLiked();},halfVideoDuration);
   }
 }
 

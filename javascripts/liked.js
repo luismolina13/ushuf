@@ -4,7 +4,7 @@ function queueVideo(videoID) {
 }
 
 function videoLiked() {	
-	alert("videoLiked");
+	// alert("videoLiked");
 	loadXMLDoc("POST", "/like", true, queueVideo, "videoID="+currentVideo);
 }
 
